@@ -1,8 +1,7 @@
 <h1> 
     <a href="https://magician-io.com">Magician-JDBC</a> ·
     <img src="https://img.shields.io/badge/licenes-MIT-brightgreen.svg"/>
-    <img src="https://img.shields.io/badge/jdk-11+-brightgreen.svg"/>
-    <img src="https://img.shields.io/badge/maven-3.5.4+-brightgreen.svg"/>
+    <img src="https://img.shields.io/badge/jdk-17+-brightgreen.svg"/>
     <img src="https://img.shields.io/badge/release-master-brightgreen.svg"/>
 </h1>
 
@@ -10,7 +9,7 @@ Magician-JDBC is the official JDBC component of Magician, supporting multiple da
 
 ## Documentation
 
-[https://magician-io.com](https://magician-io.com)
+[https://magician-io.com/db](https://magician-io.com/db)
 
 ## Example
 
@@ -20,7 +19,7 @@ Magician-JDBC is the official JDBC component of Magician, supporting multiple da
 <dependency>
     <groupId>com.github.yuyenews</groupId>
     <artifactId>Magician-JDBC</artifactId>
-    <version>2.0.3</version>
+    <version>2.0.5</version>
 </dependency>
 
 <!-- mysql driver package -->

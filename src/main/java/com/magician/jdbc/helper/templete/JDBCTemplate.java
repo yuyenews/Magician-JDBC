@@ -10,6 +10,7 @@ import com.magician.jdbc.helper.templete.model.Condition;
 import com.magician.jdbc.helper.templete.model.PageModel;
 import com.magician.jdbc.helper.templete.model.PageParamModel;
 import com.magician.jdbc.helper.templete.model.SqlBuilderModel;
+import com.magician.jdbc.helper.templete.util.ConditionBuilder;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -55,15 +56,16 @@ public class JDBCTemplate {
     /**
      * No sql, single table query
      * @param tableName
-     * @param conditions
+     * @param conditionBuilder
      * @param cls
      * @param <T>
      * @return
      * @throws Exception
      */
-    public <T> List<T> select(String tableName, List<Condition> conditions, Class<T> cls) throws Exception {
+    public <T> List<T> select(String tableName, ConditionBuilder conditionBuilder, Class<T> cls) throws Exception {
         ConnectionManager connectionManager = getConnection();
         try {
+            List<Condition> conditions = conditionBuilder.build();
             StringBuffer sql = new StringBuffer();
             sql.append("select * from ");
             sql.append(tableName);
@@ -93,11 +95,13 @@ public class JDBCTemplate {
      * No sql, single table update
      * @param tableName
      * @param data
-     * @param conditions
+     * @param conditionBuilder
      * @return
      * @throws Exception
      */
-    public int update(String tableName,  Object data, List<Condition> conditions) throws Exception {
+    public int update(String tableName,  Object data, ConditionBuilder conditionBuilder) throws Exception {
+        List<Condition> conditions = conditionBuilder.build();
+
         if (conditions == null || conditions.size() < 1) {
             throw new Exception("For the sake of safety, please write sql for unconditional modification operations.");
         }
@@ -144,11 +148,13 @@ public class JDBCTemplate {
     /**
      * No sql, single table delete
      * @param tableName
-     * @param conditions
+     * @param conditionBuilder
      * @return
      * @throws Exception
      */
-    public int delete(String tableName, List<Condition> conditions) throws Exception {
+    public int delete(String tableName, ConditionBuilder conditionBuilder) throws Exception {
+        List<Condition> conditions = conditionBuilder.build();
+
         if (conditions == null || conditions.size() < 1) {
             throw new Exception("For the sake of safety, please write sql for unconditional delete operations.");
         }
